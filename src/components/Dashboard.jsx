@@ -1,6 +1,7 @@
-function Dashboard({ students }) {
+
+function Dashboard({ students, onDeleteStudent }) {
     return (
-        <div className="dashboard-content">
+        <div>
 
             <div className="stats-grid">
 
@@ -40,6 +41,7 @@ function Dashboard({ students }) {
                             <th>Name</th>
                             <th>Department</th>
                             <th>Year</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
 
@@ -50,10 +52,22 @@ function Dashboard({ students }) {
                                 <td>{student.name}</td>
                                 <td>{student.department}</td>
                                 <td>{student.year}</td>
+                                <td>
+                                    <button
+                                        className="delete-btn"
+                                        onClick={() => onDeleteStudent(student.id)}
+                                    >
+                                        Delete
+                                    </button>
+                                </td>
                             </tr>
                         ))}
                     </tbody>
                 </table>
+
+                {students.length === 0 && (
+                    <p>No students found.</p>
+                )}
             </div>
 
         </div>
